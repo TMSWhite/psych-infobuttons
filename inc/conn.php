@@ -1,8 +1,8 @@
 <?php 
 
 $host = "127.0.0.1";
-$user = "javauser";
-$password = "javadude";
+$user = "kimdom";
+$password = "lk1120";
 $db = "psychotropics";
 
 $conn = mysql_pconnect($host, $user, $password) or die(mysql_error());
