@@ -3,7 +3,7 @@
 <?php } else { ?>
 
 <font size="2" color="#191970">You Just Requested The Following Drug Name:&nbsp;<font size="3" color=red><b><u><?php echo $drug; ?></u></b></font></font>
-<h4>A to Z Drug Facts from <font color="#006400">SkolarMD</font></h4>
+<h4>A to Z Drug Facts from <font color="#006400">SkolarMD</font></h4><u><--Currently the links have EXPIRED!</u>
 
 <HR NOSHADE>
 
@@ -29,7 +29,7 @@
 
 
 <HR NOSHADE>
-<h4>Other Resources from <font color="#006400">SkolarMD:</font></h4>
+<h4>Other Resources from <font color="#006400">SkolarMD:</font></h4><u><--Currently the links have EXPIRED!</u>
 
 <a target=_blank href="imanager.php?nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia&query=" . $drug . "&resource=CLINEGUIDE") .  "&iquery=" . urlencode("affilid=omhcolumbia&uid=omhcolumbia&query=" . $drug . "&resource=CLINEGUIDE");?>"><font color="8b0000">Clin-eguide:</font>What does it say about this Drug?</a><br>
 
@@ -42,7 +42,7 @@
 <a target=_blank href="imanager.php?nquery=<?php print urlencode("http://www.efactsonline.com/Fac/servlet/WordSearch?submit=sumbit&x=0&y=0&word1=" . $drug . "") . "&iquery=" . urlencode("submit=submit&x=0&y=0&word1=" . $drug . "");?>"><font color="4682b4">eFacts:</font>What does it say about this Drug?</a>
 
 <HR NOSHADE>
-<h4>Category Listings from <font color="#006400">SkolarMD:</font></h4>
+<h4>Category Listings from <font color="#006400">SkolarMD:</font></h4><u><--Currently the linkx have EXPIRED!</u>
 
 <a target=_blank href="imanager.php?nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia&query=" . $drug . "&format=xml&level=category") . "&iquery=" . urlencode("affilid=omhcolumbia&uid=omhcolumbia&query=" . $drug . "&format=xml&level=category");?>"><font color="ff6347">XML Format:</font>Categories listings from SkolarMD</a><br>
 
@@ -59,7 +59,7 @@
 <a target=_blank href="imanager.php?nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia&query=" . $drug . "&category=SPCL_CNT") . "&iquery=" . urlencode("affilid=omhcolumbia&uid=omhcolumbia&query=" . $drug . "&category=SPCL_CNT");?>"><font color="9400d3">Web Content:</font>What is this Drug?</a>
 
 <HR NOSHADE>
-<h4>Other Helpful Related Links</h4>
+<h4>Other Helpful Related Links</h4><u><--These links STILL WORK!</u>
 
 <a target=_blank href="imanager.php?nquery=<?php print urlencode("http://www.rxlist.com/cgi/rxlist.cgi?drug=" . $drug . "*") . "&iquery=" . urlencode("drug= . $drug . "*"");?>"><font color="191970">RxList:</font>What does it say about this Drug?</a><br>
 
