@@ -28,4 +28,13 @@ function name2id ($n) {
 
 }
 
+function get_mtime($ts) {
+
+	$f = explode(" ", $ts);
+	return (float)$f[0] + (float)$f[1];
+
+
+}
+
+
 ?>

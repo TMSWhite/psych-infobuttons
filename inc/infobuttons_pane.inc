@@ -6,7 +6,7 @@
 // split query string into variables and values. e.g. if URL is myscript.php?a=1&b=2 make new variables $a = 1 and $b = 2
 extract($_GET);
 
-// function definition for name2id()
+// function definition for name2id() and get_mtime()
 require_once("funcs.inc");
 
 // get user's ip address from environment variable $REMOTE_ADDR - this variables is set by the CGI environment
@@ -22,10 +22,15 @@ $drug = $drugname;
 
 // construct URL to infobuttons server using drug ID
 $redirect_url = "http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infomanage.cgi?info_institute=NYOMH&info_context=InPatientDrugs";
-//$redirect_url = "http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia";
+// trying to get Columbia Server connection time
+$redirect_time =  microtime(); //save the current timestamp
+$columbia_reply = 'Y';
+
+$errlog = fopen("/tmp/time.log", "a");
+fwrite($errlog, "timestamp before hitting columbia:$redirect_time\n\n");
+
 
 //&info_med=$infomed^^MED"; this query string is the first one checked for drug name
-
 if(isset($_GET['drug']))
 	$redirect_url .= "&info_med=$infomed^^MED";
 
@@ -61,23 +66,50 @@ foreach($optional_params as $op){
 // Uncomment this line to display link to Columbia w/o connecting to the DB.
 //die($redirect_url);
 
+
+// test to see if the remote server is up
+$test_handle = fopen("http://infobuttons.dbmi.columbia.edu/infobuttons/info_i.jpg", "rb");
+
+
+
+
+$server_answers = microtime(); // timestamp for when the server has answered. 
+
+
+$processing_time = get_mtime($server_answers) - get_mtime($redirect_time);
+
+
+
+fwrite($errlog, "timestamp after hitting columbia:$server_answers\n\n");
+
+
+fwrite($errlog, "processing time: $processing_time\n\n");
+
+
+
+
+
+$test_data = fread($test_handle, 1000 );
+
+if(strlen($test_data) < 50) {
+	header("Location: serverdown.php");
+	$query = "insert into sessions (ip, access_time, session_key, request_uri, redirect_url, processing_time, columbia_reply) values('$ip', sysdate(), '" . session_id() . "','" . getenv("QUERY_STRING") . "','$redirect_url', $processing_time, 'N')";
+
+	// run query
+	mysql_query($query) or die(mysql_error());
+
+	exit(0);
+}
+fclose($test_handle);
+
+
 // build query to insert this hit into the sessions table
-$query = "insert into sessions (ip, access_time, session_key, request_uri, redirect_url) values('$ip', sysdate(), '" . session_id() . "','". getenv("QUERY_STRING") . "','$redirect_url')";
+$query = "insert into sessions (ip, access_time, session_key, request_uri, redirect_url, processing_time, columbia_reply) values('$ip', sysdate(), '" . session_id() . "','" . getenv("QUERY_STRING") . "','$redirect_url', $processing_time, '$columbia_reply')";
 
 // run query
 mysql_query($query) or die(mysql_error());
 
 
-// test to see if the remote server is up
-$test_handle = fopen("http://infobuttons.dbmi.columbia.edu/infobuttons/info_i.jpg", "rb");
-
-$test_data = fread($test_handle, 1000);
-
-if(strlen($test_data) < 50) {
-	header("Location: serverdown.php");
-	exit(0);
-}
-fclose($test_handle);
 
 
 // send client to new url UNCOMMENT THESE 2 LINES TO SEND USERS TO COLUMBIA SERVER ->
@@ -93,7 +125,7 @@ fclose($test_handle);
 
 // open remote URL read-only over http
 $response = fopen($redirect_url, "r");
-
+	
 // buffer to hold content from remote server
 $contents = "";
 
