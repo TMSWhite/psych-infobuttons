@@ -67,7 +67,7 @@
 
 <a target=_blank href="imanager.php?nquery=<?php print urlencode("http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?dispmax=20&db=PubMed&cmd=Search&term=" . $drug . "+&doptcmdl=DocSum") . "&iquery=" .urlencode("dispmax=20&db=PubMed&cmd=Search&term=" . $drug . "+&doptcmd1-DocSum");?>"><font color="cd853f">PubMed:</font>What does it say about this Drug?</a><br>
 
-<a target=_blank href="imanager.php?nquery=<?php print urlencode("http://www.guideline.gov/search/searchresults.aspx?Type=3&txtSearch=" . $drug . "&num=10") . "&iquery=" .urlencode("Type=3&txtSearch=" . $drug . "&num=10");?>"><font color="cd5c5c">National Guideline Clearinghouse:</font>What does it say about his Drug?</a><br>
+<a target=_blank href="imanager.php?nquery=<?php print urlencode("http://www.guideline.gov/search/searchresults.aspx?Type=3&txtSearch=" . $drug . "&num=10") . "&iquery=" .urlencode("Type=3&txtSearch=" . $drug . "&num=10");?>"><font color="cd5c5c">National Guideline Clearinghouse:</font>What does it say about this Drug?</a><br>
 
 <a target=-blank href="imanager.php?nquery=<?php print urlencode("http://www.thomsonhc.com") . "&iquery=" .urlencode("");?>"><font color="9acd32">Micromedex:</font>What's in Thomson Link?</a>
 
