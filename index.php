@@ -34,8 +34,8 @@ document.all.hidepage.style.visibility = 'hidden';
 </td>
 </tr>
 <tr>
-<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia'>SkolarMD</a> Website</td>
-<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://www.thomsonhc.com/'>Micromedex</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="imanager.php?nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia") . "&iquery=" .urlencode("");?>">SkolarMD</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="imanager.php?nquery=<?php print urlencode("http://www.thomsonhc.com/") . "&iquery=" .urlencode("");?>">Micromedex</a> Website</td>
 </tr>
 <tr>
 <td width="50%" valign="top">
@@ -66,8 +66,11 @@ document.all.hidepage.style.visibility = 'hidden';
 </td>
 </tr>
 <tr>
-<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia'>SkolarMD</a> Website</td>
-<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://www.thomsonhc.com/'>Micromedex</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="imanager.php?
+nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia
+") . "&iquery=" .urlencode("");?>">SkolarMD</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="imanager.php?
+nquery=<?php print urlencode("http://www.thomsonhc.com/") . "&iquery=" .urlencode("");?>">Micromedex</a> Website</td>
 </tr>
 <tr>
 <td width="50%" valign="top">
