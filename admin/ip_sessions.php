@@ -18,7 +18,8 @@ while($r  = mysql_fetch_assoc($res))
 <br><br>
 <table border=1 width=90% align=center>
 <tr>
-	<td width=12%><tt><b><u>Ip Address:</u></b></tt></td>
+	<td width=12%>
+	<tt><b><u>Ip Address:</u></b></tt></td>
 	<td width=18%><tt><b><u>Frequency:</u></b></tt></td>
 </tr>
 

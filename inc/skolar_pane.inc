@@ -1,5 +1,5 @@
-<?php if (!isset($drug) or trim($drug) == "") { ?>
-	<font size="+1" color="red"><b>Please type a drug name above and click <i>Search</i>, or click on one of the links.</b></font>
+<?php if (!isset($drug)) { ?>
+	<font size="+2" color="red"><b>Please type a drug name above and click <i>Search</i>, or click on one of the links</b></font>
 <?php } else { ?>
 
 <font size="2" color="#191970">You Just Requested The Following Drug Name:&nbsp;<font size="3" color=red><b><u><?php echo $drug; ?></u></b></font></font>

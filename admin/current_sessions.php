@@ -9,25 +9,24 @@ $sessions = array();
 
 while($r  = mysql_fetch_assoc($res))
 	array_push($sessions, $r);
-
 ?>
 
 <html>
 <body bgcolor=black text=yellow font size="-1">
 <tt><b><blink>CURRENT SESSION ACTIVITY</blink></b></tt>
 <br><br>
-<table border=1 width=90% align=center>
+<table border=1 width=100% align=center>
 <tr>
-	<td width=12%>
-	<tt><b><a href="../admin/ip_sessions.php">Ip Address:</a></b></tt>
+	<td width=10%>
+	<tt><b><u><a href="../admin/ip_sessions.php">Ip Address:</a></u></b></tt>
 	</td>
-	<td width=18%><tt><b><u>Creation Time:</u></b></tt></td>
-	<td width=22%><tt><b><u>Session Key:</u></b></tt></td>
-	<td width=23%><tt><b><u>Request URL:<br><sub>http://psychinformatics.nyspi.org/infobuttons?</sub></u></b></tt></td>
-	<td width=18%><tt><b><u>Columbia Replied?:</u></b></tt></td>
-	<td width=22%><tt><b><u>Processing Time (milliseconds):</u></b></tt></td>
-	<td width=25%><tt><b><u>Redirect URL:<br><sub>http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infomanage.cgi?info_institute=NYOMH&info_context=InPatientDrugs&</sub></u></b></tt></td>
-</tr>
+	<td width=12%><tt><b><u>Creation Time:</u></b></tt></td>
+	<td width=13%><tt><b><u>Session Key:</u></b></tt></td>
+	<td width=25%><tt><b><u>Request URL:<br><sub>http://psychinformatics.nyspi.org/infobuttons?</sub></u></b></tt></td>
+	<td width=10%><tt><b><u>Columbia Replied?:</u></b></tt></td>
+	<td width=10%><tt><b><u><a href="../reader.php">Processing Time (milliseconds):</a></u></b></tt></td>
+	<td width=25%><tt><b><u><a href="../admin/redirect.php">Redirect URL:</a><br><sub>http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infomanage.cgi?info_institute=NYOMH&info_context=InPatientDrugs&</sub></u></b></tt></td>
+	</tr>
 
 <?php
 	foreach($sessions as $s)
