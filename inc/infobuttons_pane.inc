@@ -72,6 +72,11 @@ $test_url = "http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infoman
 //$test_handle = fopen("http://infobuttons.dbmi.columbia.edu/infobuttons/info_i.jpg", "rb");
 $test_handle = fopen($test_url, "r");
 
+// make sure connection completed
+if(!isset($test_handle)){
+	$columbia_reply = '-';
+	errorPage("Server connection failed");
+}
 
 //fwrite($errlog, "timestamp after hitting columbia:$server_answers\n\n");
 
@@ -84,7 +89,7 @@ $test_handle = fopen($test_url, "r");
 $test_data = fread($test_handle, 1000 );
 
 if(strlen($test_data) < 50) {
-	header("Location: serverdown.php");
+	header("Location: http://psychinformatics.nyspi.org/serverdown.php");
 	$query = "insert into sessions (ip, access_time, session_key, request_uri, redirect_url, processing_time, columbia_reply) values('$ip', sysdate(), '" . session_id() . "','" . getenv("QUERY_STRING") . "','$redirect_url', $processing_time, 'N')";
 
 	// run query
@@ -109,9 +114,12 @@ fclose($test_handle);
 
 
 // comment out the rest of the script to test without connecting to the server. 
-
+$valid_conn = true;
 // open remote URL read-only over http
-$response = fopen($redirect_url, "r");
+
+$response = @fopen($redirect_url, "r");
+if (!isset($response))
+	$valid_conn = false;
 	
 // buffer to hold content from remote server
 $contents = "";
@@ -120,7 +128,8 @@ $contents = "";
 // read from the remote server until all bytes downloaded
 do { 
    // read 8K into a temp  buffer
-   $data = fread($response, 8192); 
+   if($valid_conn)
+	   $data = @fread($response, 8192); 
    // done if temp buffer is empty
    if (strlen($data) == 0) { 
        break; 
@@ -130,7 +139,8 @@ do {
 } while(true); 
 
 // close connection to remote server
-fclose($response);
+if($valid_conn)
+	@fclose($response);
 
 /*************************
 
@@ -158,13 +168,21 @@ $contents = preg_replace("/<\/body>/","", $contents);
 
 $contents = preg_replace("/\/webcisimgs/","http://infobuttons.dbmi.columbia.edu/infobuttons",$contents);
 $contents = preg_replace("/\micromedex_omh/","http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/micromedex_omh",$contents);
-if(strpos($contents, "Frequently Asked Questions") != false)
+//this function can take a full string as the needle parameter and the entire string will be used.  It hits the drug page looking for FAQ titles.
+
+if(strpos($contents, "Frequently Asked Questions") != false && $columbia_reply != "-")
 	$columbia_reply = 'Y';
-else
+elseif ($columbia_reply != "-")
 	$columbia_reply = 'N';
 
-//die($redirect_url);
-print $contents;
+	
+
+if ($columbia_reply == 'Y')
+	print $contents;
+elseif($columbia_reply == 'N')
+	print '<center><b><font size="+2" color="#0000CD">No such drug found</b></font></center>';
+else
+	print '<center><b><font size="+2" color="#0000CD">Unable to connect to server</center>';
 
 $server_answers = microtime(); // timestamp for when the server has answered. 
 
