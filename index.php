@@ -34,6 +34,10 @@ document.all.hidepage.style.visibility = 'hidden';
 </td>
 </tr>
 <tr>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia'>SkolarMD</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://www.thomsonhc.com/'>Micromedex</a> Website</td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <? include("inc/skolar_pane.inc") ?>
 </td>
@@ -60,6 +64,10 @@ document.all.hidepage.style.visibility = 'hidden';
 <input type="reset" value="Clear" />
 </form>
 </td>
+</tr>
+<tr>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia'>SkolarMD</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href='http://www.thomsonhc.com/'>Micromedex</a> Website</td>
 </tr>
 <tr>
 <td width="50%" valign="top">
