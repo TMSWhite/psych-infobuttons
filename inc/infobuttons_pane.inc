@@ -24,10 +24,10 @@ $drug = $drugname;
 $redirect_url = "http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infomanage.cgi?info_institute=NYOMH&info_context=InPatientDrugs";
 // trying to get Columbia Server connection time
 $redirect_time =  microtime(); //save the current timestamp
-$columbia_reply = 'Y';
 
-$errlog = fopen("/tmp/time.log", "a");
-fwrite($errlog, "timestamp before hitting columbia:$redirect_time\n\n");
+
+//$errlog = fopen("/tmp/time.log", "a");
+//fwrite($errlog, "timestamp before hitting columbia:$redirect_time\n\n");
 
 
 //&info_med=$infomed^^MED"; this query string is the first one checked for drug name
@@ -68,22 +68,14 @@ foreach($optional_params as $op){
 
 
 // test to see if the remote server is up
-$test_handle = fopen("http://infobuttons.dbmi.columbia.edu/infobuttons/info_i.jpg", "rb");
+$test_url = "http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infomanage.cgi?info_institute=NYOMH&info_context=InPatientDrugs";
+//$test_handle = fopen("http://infobuttons.dbmi.columbia.edu/infobuttons/info_i.jpg", "rb");
+$test_handle = fopen($test_url, "r");
 
 
+//fwrite($errlog, "timestamp after hitting columbia:$server_answers\n\n");
 
-
-$server_answers = microtime(); // timestamp for when the server has answered. 
-
-
-$processing_time = get_mtime($server_answers) - get_mtime($redirect_time);
-
-
-
-fwrite($errlog, "timestamp after hitting columbia:$server_answers\n\n");
-
-
-fwrite($errlog, "processing time: $processing_time\n\n");
+//fwrite($errlog, "processing time: $processing_time\n\n");
 
 
 
@@ -103,11 +95,6 @@ if(strlen($test_data) < 50) {
 fclose($test_handle);
 
 
-// build query to insert this hit into the sessions table
-$query = "insert into sessions (ip, access_time, session_key, request_uri, redirect_url, processing_time, columbia_reply) values('$ip', sysdate(), '" . session_id() . "','" . getenv("QUERY_STRING") . "','$redirect_url', $processing_time, '$columbia_reply')";
-
-// run query
-mysql_query($query) or die(mysql_error());
 
 
 
@@ -171,9 +158,22 @@ $contents = preg_replace("/<\/body>/","", $contents);
 
 $contents = preg_replace("/\/webcisimgs/","http://infobuttons.dbmi.columbia.edu/infobuttons",$contents);
 $contents = preg_replace("/\micromedex_omh/","http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/micromedex_omh",$contents);
+if(strpos($contents, "Frequently Asked Questions") != false)
+	$columbia_reply = 'Y';
+else
+	$columbia_reply = 'N';
+
 //die($redirect_url);
 print $contents;
 
+$server_answers = microtime(); // timestamp for when the server has answered. 
+
+$processing_time = get_mtime($server_answers) - get_mtime($redirect_time);
+// build query to insert this hit into the sessions table
+$query = "insert into sessions (ip, access_time, session_key, request_uri, redirect_url, processing_time, columbia_reply) values('$ip', sysdate(), '" . session_id() . "','" . getenv("QUERY_STRING") . "','$redirect_url', $processing_time, '$columbia_reply')";
+
+// run query
+mysql_query($query) or die(mysql_error());
 
 //fflush(); // flush the output buffer
 
