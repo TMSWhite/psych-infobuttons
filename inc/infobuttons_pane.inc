@@ -182,7 +182,7 @@ if ($columbia_reply == 'Y')
 elseif($columbia_reply == 'N')
 	print '<center><b><font size="+2" color="#0000CD">No such drug found</b></font></center>';
 else
-	print '<center><b><font size="+2" color="#0000CD">Unable to connect to server</center>';
+	print '<center><b><font size="+2" color="#0000CD">Unable to connect to server</font></b></center>';
 
 $server_answers = microtime(); // timestamp for when the server has answered. 
 
