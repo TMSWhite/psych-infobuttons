@@ -1,3 +1,7 @@
+<?php if (!isset($drug)) { ?>
+	<font size="+1" color="red"><b>Please type a drug name above and click <i>Search</i>, or click on one of the links.</b></font>
+<?php } else { ?>
+
 <font size="2" color="#191970">You Just Requested The Following Drug Name:&nbsp;<font size="3" color=red><b><u><?php echo $drug; ?></u></b></font></font>
 <h4>A to Z Drug Facts from <font color="#006400">SkolarMD</font></h4>
 
@@ -67,3 +71,4 @@
 
 <a target=-blank href="imanager.php?nquery=<?php print urlencode("http://www.thomsonhc.com") . "&iquery=" .urlencode("");?>"><font color="9acd32">Micromedex:</font>What's in Thomson Link?</a>
 
+<?php } ?>
