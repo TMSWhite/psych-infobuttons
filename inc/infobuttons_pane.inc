@@ -170,6 +170,10 @@ $contents = preg_replace("/\/webcisimgs/","http://infobuttons.dbmi.columbia.edu/
 $contents = preg_replace("/\micromedex_omh/","http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/micromedex_omh",$contents);
 //this function can take a full string as the needle parameter and the entire string will be used.  It hits the drug page looking for FAQ titles.
 
+// Fix links to Columbia CGIs so use full path
+$contents = preg_replace("/wc_link_appInfobutton.cgi/","http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_link_appInfobutton.cgi",$contents);
+$contents = preg_replace("/wc_infomanage.cgi/","http://infobuttons.dbmi.columbia.edu/infobuttons/cgi-bin/wc_infomanage.cgi",$contents);
+
 if(strpos($contents, "Frequently Asked Questions") != false && $columbia_reply != "-")
 	$columbia_reply = 'Y';
 elseif ($columbia_reply != "-")
