@@ -34,8 +34,8 @@ document.all.hidepage.style.visibility = 'hidden';
 </td>
 </tr>
 <tr><td background="../images/logo_bg.jpg" align='center' colspan='2'>
-<?php if (!isset($drug)) { ?>
-	<a target=_blank href='https://www.quickbase.com/db/main?act=signin&loginid=southbeach&password=beach&nexturl=https%3A%2F%2Fwww.quickbase.com%2Fdb%2F94m22whv'>
+<?php if (!isset($drug) or trim($drug) == "") { ?>
+	<a target=_blank href="imanager.php?nquery=<?php print urlencode("https://www.quickbase.com/db/main?act=signin&loginid=southbeach&password=beach&nexturl=https://www.quickbase.com/db/94m22whv"); ?>">
 	South Beach Formulary Manager
 	</a>
 <?php } else { ?>
@@ -45,7 +45,8 @@ document.all.hidepage.style.visibility = 'hidden';
 <?php } ?>
 </td></tr>
 <tr>
-<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="imanager.php?nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia") . "&iquery=" .urlencode("");?>">SkolarMD</a> Website</td>
+<td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="
+imanager.php?nquery=<?php print urlencode("http://md.skolar.com/gateway?affilid=omhcolumbia&uid=omhcolumbia") . "&iquery=" .urlencode("");?>">SkolarMD</a> Website</td>
 <td background="../images/logo_bg.jpg" align='center' width='50%'>Visit <a href="imanager.php?nquery=<?php print urlencode("http://www.thomsonhc.com/") . "&iquery=" .urlencode("");?>">Micromedex</a> Website</td>
 </tr>
 <tr>
@@ -53,7 +54,9 @@ document.all.hidepage.style.visibility = 'hidden';
 <? include("inc/skolar_pane.inc") ?>
 </td>
 <td width="50%" valign="top">
-<h4>Also getting links from Columbia's Infobuttons Server ...</h4>
+<?php if (!isset($drug) or trim($drug) == "") { ?>
+	<h4>Also getting links from Columbia's Infobuttons Server ...</h4>
+<? } ?>
 </td>
 </tr>
 </table>
@@ -77,8 +80,8 @@ document.all.hidepage.style.visibility = 'hidden';
 </td>
 </tr>
 <tr><td background="../images/logo_bg.jpg" align='center' colspan='2'>
-<?php if (!isset($drug)) { ?>
-	<a target=_blank href='https://www.quickbase.com/db/main?act=signin&loginid=southbeach&password=beach&nexturl=https%3A%2F%2Fwww.quickbase.com%2Fdb%2F94m22whv'>
+<?php if (!isset($drug) or trim($drug) == "") { ?>
+	<a target=_blank href="imanager.php?nquery=<?php print urlencode("https://www.quickbase.com/db/main?act=signin&loginid=southbeach&password=beach&nexturl=https://www.quickbase.com/db/94m22whv"); ?>">
 	South Beach Formulary Manager
 	</a>
 <?php } else { ?>
@@ -98,7 +101,10 @@ nquery=<?php print urlencode("http://www.thomsonhc.com/") . "&iquery=" .urlencod
 <? include("inc/skolar_pane.inc") ?>
 </td>
 <td width="50%" valign="top">
-<?php if(isset($_GET['drug'])) require_once("inc/infobuttons_pane.inc"); ?>
+<?php if (isset($drug) and trim($drug) != "") {
+		require_once("inc/infobuttons_pane.inc"); 
+	}
+?>
 </td>
 </tr>
 </table>

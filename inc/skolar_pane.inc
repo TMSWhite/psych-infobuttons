@@ -1,4 +1,4 @@
-<?php if (!isset($drug)) { ?>
+<?php if (!isset($drug) or trim($drug) == "") { ?>
 	<font size="+1" color="red"><b>Please type a drug name above and click <i>Search</i>, or click on one of the links.</b></font>
 <?php } else { ?>
 
