@@ -1,0 +1,8 @@
+Note: Don't change the order of the arguments.
+Quotes are mandatory.
+
+hostname = "127.0.0.1"
+username = "kimdom"
+password = "lk1120"
+
+dbaname = "huvtdb"
